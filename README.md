@@ -1,1 +1,1 @@
-# laravel-training
+# Laravel Test App
