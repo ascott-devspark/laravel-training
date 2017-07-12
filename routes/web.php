@@ -11,6 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Entrust::routeNeedsPermission('*', array('view-video', 'edit-video', 'delete-video'));
+
+Route::get('/', 'HomeController@welcome');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::resource('video', 'VideoController');

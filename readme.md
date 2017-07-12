@@ -7,6 +7,20 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
 
+## Example App written in Laravel
+
+In order to install the application you need 
+
+    git clone https://github.com/ascott-devspark/laravel-training.git apptraining
+    
+    cd apptraining
+    
+    composer install
+
+After that you need change your `.env` file to set the DB connection as well as site URL and Title. Whe you finish the configuration you need execute the DB migration in order to install the schema.
+ 
+    php artisan migrate
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
