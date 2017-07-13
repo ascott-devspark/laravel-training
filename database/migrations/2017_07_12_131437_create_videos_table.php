@@ -21,7 +21,7 @@ class CreateVideosTable extends Migration
             $table->string('duration');
             $table->integer('size');
             $table->string('format');
-            $table->string('bit_rare');
+            $table->string('bit_rate');
 
             $table->timestamps();
         });

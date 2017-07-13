@@ -19,7 +19,7 @@ class CreateTagsTable extends Migration {
       $table->timestamps();
     });
 
-    Schema::create('video_tag', function (Blueprint $table) {
+    Schema::create('tag_video', function (Blueprint $table) {
       $table->integer('video_id')->unsigned()->index();
       $table->integer('tag_id')->unsigned()->index();
       $table->timestamps();

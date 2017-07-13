@@ -1,17 +1,16 @@
 @extends('layouts.app')
 
-@section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
+@section('content-title')
+Edit Video
+@endsection
 
-                <div class="panel-body">
-                    Aca va la lista
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+@section('content-body')
+{{ Form::model($video, ['route' => ['video.update', $video->id], 'class' => 'form', 'method' => 'PUT', 'files' => true]) }}
+
+    @include('videos.form')
+
+    {{ Form::submit('Update', array('class' => 'btn btn-primary')) }}
+    <a href="{{ route('video.index') }}" class="btn btn-default">Cancel</a>
+
+{{ Form::close() }}
 @endsection

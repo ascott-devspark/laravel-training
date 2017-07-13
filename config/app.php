@@ -172,6 +172,11 @@ return [
          * Entrust Service Provider...
          */
         Zizaco\Entrust\EntrustServiceProvider::class,
+      
+        /*
+         * Collective Html Service Provider... 
+         */
+        Collective\Html\HtmlServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -234,7 +239,11 @@ return [
          * Entrust Alias
          */
         'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
-
+        /*
+         * HTML and Form Alias
+         */
+        'Form' => Collective\Html\FormFacade::class,
+        'Html' => Collective\Html\HtmlFacade::class,
     ],
 
 ];

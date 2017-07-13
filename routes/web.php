@@ -11,8 +11,6 @@
 |
 */
 
-Entrust::routeNeedsPermission('*', array('view-video', 'edit-video', 'delete-video'));
-
 Route::get('/', 'HomeController@welcome');
 
 Auth::routes();
@@ -20,3 +18,5 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('video', 'VideoController');
+
+Route::get('/video/{video}/confirm', 'VideoController@confirm')->name('video.confirm');

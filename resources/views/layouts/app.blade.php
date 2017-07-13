@@ -28,9 +28,15 @@
                     </button>
 
                     <!-- Branding Image -->
+                    @if (Auth::guest())
                     <a class="navbar-brand" href="{{ url('/') }}">
                         {{ config('app.name', 'Laravel') }}
                     </a>
+                    @else
+                    <a class="navbar-brand" href="{{ url('home') }}">
+                        {{ config('app.name', 'Laravel') }}
+                    </a>
+                    @endif
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
@@ -73,11 +79,51 @@
             </div>
         </nav>
 
-        @if (Session::has('message'))
-            <div class="alert alert-info">{{ Session::get('message') }}</div>
+        @if(Session::has('message'))
+        <div class="container">
+          <div class="row">
+            <div class="col-md-8 col-md-offset-2 alert alert-success alert-dismissable" role="alert">
+                <button type="button" class="close" aria-label="Close" data-dismiss="alert"><span aria-hidden="true">&times;</span></button>
+                <p>{{ Session::get('message') }}</p>
+            </div>
+          </div>
+        </div>
         @endif
-
-        @yield('content')
+        
+        @if (count($errors) > 0)
+        <div class="container">
+          <div class="row">
+            <div class="col-md-8 col-md-offset-2 alert alert-danger alert-dismissable" role="alert">
+                <button type="button" class="close" aria-label="Close" data-dismiss="alert"><span aria-hidden="true">&times;</span></button>
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+          </div>
+        </div>
+       @endif
+ 
+        <div class="container">
+          <div class="row">
+              <div class="col-md-8 col-md-offset-2">
+                  <div class="panel panel-default">
+                      <div class="panel-heading clearfix">
+                        <h4 class="panel-title pull-left">
+                          @yield('content-title')
+                        </h4>
+                        <div class="btn-group pull-right">
+                          @yield('content-btns')
+                        </div>
+                      </div>
+                      <div class="panel-body">
+                        @yield('content-body')
+                      </div>
+                  </div>
+              </div>
+          </div>
+        </div>
     </div>
 
     <!-- Scripts -->
