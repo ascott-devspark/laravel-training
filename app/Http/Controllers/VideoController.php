@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-//https://scotch.io/tutorials/simple-laravel-crud-with-resource-controllers
 class VideoController extends Controller {
 
   private $rootPath = 'videos';
@@ -23,6 +22,10 @@ class VideoController extends Controller {
    */
   public function __construct() {
     $this->middleware('auth');
+
+//    $this->middleware('permission:play-video', ['only' => ['show']]);
+//    $this->middleware('permission:add-edit-video', ['only' => ['create','store','edit','update']]);
+//    $this->middleware('permission:delete-video', ['only' => ['destroy']]);
   }
 
   /**
@@ -90,8 +93,9 @@ class VideoController extends Controller {
 
     $video->save();
 
-    $video->tags()->sync(array_values($request->tag));
-
+    if ($request->tag) {
+      $video->tags()->sync(array_values($request->tag));
+    }
     Session::flash('message', 'Video created successfully');
     return Redirect::route('video.index');
   }
@@ -181,7 +185,9 @@ class VideoController extends Controller {
 
     $video->save();
 
-    $video->tags()->sync(array_values($request->tag));
+    if ($request->tag) {
+      $video->tags()->sync(array_values($request->tag));
+    }
 
     Session::flash('message', 'Video updated successfully');
     return Redirect::route('video.index');

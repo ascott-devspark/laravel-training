@@ -54,7 +54,7 @@
                         @else
                             <li><a href="{{ route('video.index') }}">Videos</a></li>
                             <li><a href="{{ route('metadata.index') }}">Metadata</a></li>
-                            <li><a href="#">Users</a></li>
+                            <li><a href="{{ route('user.index') }}">Users</a></li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     {{ Auth::user()->name }} <span class="caret"></span>

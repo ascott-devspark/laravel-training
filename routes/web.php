@@ -22,3 +22,7 @@ Route::resource('video', 'VideoController');
 Route::get('/video/{video}/confirm', 'VideoController@confirm')->name('video.confirm');
 
 Route::get('/metadata', 'MetadataController@index')->name('metadata.index');
+
+Route::resource('user', 'UserController');
+
+Route::get('/user/{user}/confirm', 'UserController@confirm')->name('user.confirm');
