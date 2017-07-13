@@ -31,7 +31,7 @@ $factory->define(App\Location::class, function (Faker\Generator $faker) {
 
 $factory->define(App\Tag::class, function (Faker\Generator $faker) {
   return [
-    'name' => $faker->unique()->word,
+    'name' => $faker->unique()->firstName,
   ];
 });
 

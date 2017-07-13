@@ -20,3 +20,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('video', 'VideoController');
 
 Route::get('/video/{video}/confirm', 'VideoController@confirm')->name('video.confirm');
+
+Route::get('/metadata', 'MetadataController@index')->name('metadata.index');

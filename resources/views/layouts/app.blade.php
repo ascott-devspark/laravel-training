@@ -53,7 +53,8 @@
                             <li><a href="{{ route('register') }}">Register</a></li>
                         @else
                             <li><a href="{{ route('video.index') }}">Videos</a></li>
-                            <li><a href="#">Metadata</a></li>
+                            <li><a href="{{ route('metadata.index') }}">Metadata</a></li>
+                            <li><a href="#">Users</a></li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     {{ Auth::user()->name }} <span class="caret"></span>
@@ -82,7 +83,7 @@
         @if(Session::has('message'))
         <div class="container">
           <div class="row">
-            <div class="col-md-8 col-md-offset-2 alert alert-success alert-dismissable" role="alert">
+            <div class="col-md-10 col-md-offset-1 alert alert-success alert-dismissable" role="alert">
                 <button type="button" class="close" aria-label="Close" data-dismiss="alert"><span aria-hidden="true">&times;</span></button>
                 <p>{{ Session::get('message') }}</p>
             </div>
@@ -93,7 +94,7 @@
         @if (count($errors) > 0)
         <div class="container">
           <div class="row">
-            <div class="col-md-8 col-md-offset-2 alert alert-danger alert-dismissable" role="alert">
+            <div class="col-md-10 col-md-offset-1 alert alert-danger alert-dismissable" role="alert">
                 <button type="button" class="close" aria-label="Close" data-dismiss="alert"><span aria-hidden="true">&times;</span></button>
                 <ul>
                     @foreach ($errors->all() as $error)
@@ -107,7 +108,7 @@
  
         <div class="container">
           <div class="row">
-              <div class="col-md-8 col-md-offset-2">
+              <div class="col-md-10 col-md-offset-1">
                   <div class="panel panel-default">
                       <div class="panel-heading clearfix">
                         <h4 class="panel-title pull-left">

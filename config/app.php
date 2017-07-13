@@ -244,6 +244,10 @@ return [
          */
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
+        /*
+         * Custom App Helper
+         */
+        'FormatHelper' => App\Helpers\FormatHelper::class,
     ],
 
 ];

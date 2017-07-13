@@ -32,7 +32,7 @@ class VideoController extends Controller {
    */
   public function index() {
     // get all the nerds
-    $videos = Video::all();
+    $videos = Video::orderBy('title')->get();
 
     return view('videos.index')
             ->with('videos', $videos);
