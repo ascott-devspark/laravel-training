@@ -67,9 +67,12 @@ class UserController extends Controller {
     $user->password = bcrypt($request->password);
     $user->save();
 
+    $setedRoles = [];
     if ($request->rol) {
-      $user->roles()->sync(array_values($request->rol));
+      $setedRoles = array_values($request->rol);
     }
+
+    $user->roles()->sync($setedRoles);
 
     Session::flash('message', 'User created successfully');
     return Redirect::route('user.index');
@@ -135,9 +138,12 @@ class UserController extends Controller {
     }
     $user->save();
 
+    $setedRoles = [];
     if ($request->rol) {
-      $user->roles()->sync(array_values($request->rol));
+      $setedRoles = array_values($request->rol);
     }
+
+    $user->roles()->sync($setedRoles);
 
     Session::flash('message', 'User updated successfully');
     return Redirect::route('user.index');

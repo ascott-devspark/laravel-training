@@ -35,6 +35,17 @@ $factory->define(App\Tag::class, function (Faker\Generator $faker) {
   ];
 });
 
+$factory->define(App\Video::class, function (Faker\Generator $faker) {
+  return [
+    'title' => $faker->unique()->title,
+    'duration' => $faker->word,
+    'bit_rate' => $faker->word,
+    'path' => 'public/1500032946.dotcom_nxt392_tomnight_512x288.mp4',
+    'size' => $faker->randomNumber,
+    'format' => 'mp4',
+    'location_id' => 0,
+  ];
+});
 
 
 

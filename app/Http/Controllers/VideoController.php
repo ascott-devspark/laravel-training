@@ -95,9 +95,12 @@ class VideoController extends Controller {
 
     $video->save();
 
+    $settedTags = [];
     if ($request->tag) {
-      $video->tags()->sync(array_values($request->tag));
+      $settedTags = array_values($request->tag);
     }
+    $video->tags()->sync($settedTags);
+
     Session::flash('message', 'Video created successfully');
     return Redirect::route('video.index');
   }
@@ -189,9 +192,11 @@ class VideoController extends Controller {
 
     $video->save();
 
+    $settedTags = [];
     if ($request->tag) {
-      $video->tags()->sync(array_values($request->tag));
+      $settedTags = array_values($request->tag);
     }
+    $video->tags()->sync($settedTags);
 
     Session::flash('message', 'Video updated successfully');
     return Redirect::route('video.index');
