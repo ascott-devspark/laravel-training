@@ -1,14 +1,14 @@
 @extends('layouts.app')
 
 @section('content-title')
-Delete Video
+Delete User
 @endsection
 
 @section('content-body')
-{{ Form::open(['route' => ['video.destroy', $video->id], 'class' => 'form']) }}
+{{ Form::open(['route' => ['user.destroy', $user->id], 'class' => 'form']) }}
     {{ Form::hidden('_method', 'DELETE') }}
-    <p>Are you sure you want to delete the <strong>{{ $video->title }}</strong> video?</p>
+    <p>Are you sure you want to delete the <strong>{{ $user->name }}</strong> user?</p>
     {{ Form::submit('Delete', array('class' => 'btn btn-warning')) }}
-    <a href="{{ route('video.index') }}" class="btn btn-default">Cancel</a>
+    <a href="{{ route('user.index') }}" class="btn btn-default">Cancel</a>
 {{ Form::close() }}
 @endsection

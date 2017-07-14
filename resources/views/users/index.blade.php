@@ -15,7 +15,7 @@ User List
         <th>ID</th>
         <th>Name</th>
         <th>Email</th>
-        <th colspan="2">Action</th>
+        <th>Action</th>
     </tr>
     </thead>
     <tbody>
@@ -24,8 +24,10 @@ User List
           <td>{{ $user->id }}</td>
           <td>{{ $user->name }}</td>
           <td>{{ $user->email }}</td>
-          <td class="col-sm-1"><a href="{{ route('user.edit', $user->id) }}" class="btn btn-warning">Edit</a></td>
-          <td class="col-sm-1"><a href="{{ route('user.confirm', $user->id) }}" class="btn btn-danger">Delete</a></td>
+          <td>
+            <a href="{{ route('user.edit', $user->id) }}" class="btn btn-warning">Edit</a>
+            <a href="{{ route('user.confirm', $user->id) }}" class="btn btn-danger">Delete</a>
+          </td>
         </tr>
     @endforeach
     </tbody>

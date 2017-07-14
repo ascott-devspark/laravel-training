@@ -144,12 +144,32 @@ class UserController extends Controller {
   }
 
   /**
+   * Show confirmation to remove the specified resource from storage.
+   *
+   * @param  int $id
+   * @return \Illuminate\Http\Response
+   */
+  public function confirm($id) {
+    $user = User::find($id);
+
+    // show the edit form and pass the video
+    return view('users.confirm')
+            ->with('user', $user);
+  }
+
+  /**
    * Remove the specified resource from storage.
    *
    * @param  int $id
    * @return \Illuminate\Http\Response
    */
   public function destroy($id) {
-    //
+
+    $user = User::find($id);
+    $user->delete();
+
+    // redirect
+    Session::flash('message', 'User deleted successfully');
+    return Redirect::route('user.index');
   }
 }

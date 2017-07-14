@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class VideoController extends Controller {
 
-  private $rootPath = 'videos';
+  private $rootPath = 'public';
 
   /**
    * Create a new controller instance.
@@ -23,9 +23,9 @@ class VideoController extends Controller {
   public function __construct() {
     $this->middleware('auth');
 
-//    $this->middleware('permission:play-video', ['only' => ['show']]);
-//    $this->middleware('permission:add-edit-video', ['only' => ['create','store','edit','update']]);
-//    $this->middleware('permission:delete-video', ['only' => ['destroy']]);
+    $this->middleware('permission:play-video', ['only' => ['show']]);
+    $this->middleware('permission:add-edit-video', ['only' => ['create', 'store', 'edit', 'update']]);
+    $this->middleware('permission:delete-video', ['only' => ['confirm', 'destroy']]);
   }
 
   /**
@@ -54,7 +54,7 @@ class VideoController extends Controller {
     foreach ($locations as $location) {
       $valLoc[$location['id']] = $location['name'];
     }
-    
+
     foreach ($tags as $key => $tag) {
       $tags[$key]['checked'] = false;
     }
@@ -79,7 +79,9 @@ class VideoController extends Controller {
     $file = $request->file('file');
     $fileName = $this->getFilename($file);
 
-    $file->storeAs($this->rootPath, $fileName);
+    Storage::putFileAs(
+        $this->rootPath, $file, $fileName
+    );
 
     $video = new Video;
     $video->title = $request->title;
@@ -111,7 +113,8 @@ class VideoController extends Controller {
 
     // show the edit form and pass the video
     return view('videos.show')
-            ->with('video', $video);
+            ->with('video', $video)
+            ->with('videofile', Storage::url($video->path));
     //
   }
 
@@ -167,11 +170,12 @@ class VideoController extends Controller {
     $file = $request->file('file');
     if ($file) {
       // Delete previous file
-      Storage::delete(Storage::url($video->path));
+      Storage::delete($this->rootPath . '/' . $video->path);
 
       $fileName = $this->getFilename($file);
-
-      $file->storeAs($this->rootPath, $fileName);
+      Storage::putFileAs(
+          $this->rootPath, $file, $fileName
+      );
 
       $video->path = $fileName;
       $video->size = $file->getSize();
@@ -194,7 +198,7 @@ class VideoController extends Controller {
   }
 
   /**
-   * Remove the specified resource from storage.
+   * Show confirmation to remove the specified resource from storage.
    *
    * @param  int $id
    * @return \Illuminate\Http\Response
@@ -218,7 +222,7 @@ class VideoController extends Controller {
     $video = Video::find($id);
 
     // Delete previous file
-    Storage::delete(Storage::url($video->path));
+    Storage::delete($this->rootPath . '/' . $video->path);
 
     $video->delete();
 
@@ -230,6 +234,32 @@ class VideoController extends Controller {
   private function getFilename(UploadedFile $file) {
     $fileName = time() . '.' . $file->getClientOriginalName();
     return $fileName;
+  }
+
+  /**
+   * Add Like to video of current user
+   * 
+   * @param $id
+   */
+  public function like($id) {
+    $video = Video::find($id);
+
+    if (!$video->likes()->where('user_id', auth()->id())->exists()) {
+      $video->likes()->attach(auth()->id());
+    }
+  }
+
+  /**
+   * Remove Like to video of current user
+   *
+   * @param $id
+   */
+  public function unlike($id) {
+    $video = Video::find($id);
+
+    if ($video->likes()->where('user_id', auth()->id())->exists()) {
+      $video->likes()->detach(auth()->id());
+    }
   }
 
 }

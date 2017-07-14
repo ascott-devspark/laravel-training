@@ -11,12 +11,7 @@ class CreateLikesTable extends Migration {
    * @return void
    */
   public function up() {
-    Schema::create('likes', function (Blueprint $table) {
-      $table->increments('id');
-      $table->timestamps();
-    });
-
-    Schema::create('like_user', function (Blueprint $table) {
+    Schema::create('user_video', function (Blueprint $table) {
       $table->integer('video_id')->unsigned()->index();
       $table->integer('user_id')->unsigned()->index();
       $table->timestamps();

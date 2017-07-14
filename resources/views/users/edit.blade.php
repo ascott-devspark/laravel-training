@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content-title')
-Edit Video
+Edit User
 @endsection
 
 @section('content-body')

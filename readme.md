@@ -21,6 +21,10 @@ After that you need change your `.env` file to set the DB connection as well as 
  
     php artisan migrate
 
+    php artisan db:seed
+
+    php artisan storage:link
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:

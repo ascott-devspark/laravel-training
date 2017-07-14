@@ -21,6 +21,10 @@ Route::resource('video', 'VideoController');
 
 Route::get('/video/{video}/confirm', 'VideoController@confirm')->name('video.confirm');
 
+Route::get('/videos/{video}/likes', 'VideoController@like')->name('video.like');
+
+Route::get('/videos/{video}/unlikes', 'VideoController@unlike')->name('video.unlike');
+
 Route::get('/metadata', 'MetadataController@index')->name('metadata.index');
 
 Route::resource('user', 'UserController');
