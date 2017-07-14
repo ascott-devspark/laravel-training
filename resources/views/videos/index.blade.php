@@ -6,7 +6,7 @@ Video List
 
 @section('content-btns')
   @permission('add-edit-video')
- <a href="{{ route('video.create') }}" class="btn btn-success">Create</a>
+ <a href="{{ route('video.create') }}" class="btn btn-success"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
   @endpermission
 @endsection
 
@@ -27,20 +27,20 @@ Video List
     @foreach($videos as $video)
         <tr>
           <td>{{ $video->id }}</td>
-          <td>{{ $video->title }} </small>({{ $video->likesCount }} Likes)</small></td>
+          <td>{{ $video->title }} <small>({{ $video->likesCount }} Likes)</small></td>
           <td>{{ $video->duration }}</td>
           <td>{{ $video->bit_rate }}</td>
           <td>{{ FormatHelper::getSize($video->size, 2) }}</td>
           <td>{{ $video->format }}</td>
           <td>
             @permission('play-video')
-              <a href="{{ route('video.show', $video->id) }}" class="btn btn-success">Preview</a>
+              <a href="{{ route('video.show', $video->id) }}" class="btn btn-success"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
             @endpermission
             @permission('add-edit-video')
-              <a href="{{ route('video.edit', $video->id) }}" class="btn btn-warning">Edit</a>
+              <a href="{{ route('video.edit', $video->id) }}" class="btn btn-warning"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
             @endpermission
             @permission('delete-video')
-              <a href="{{ route('video.confirm', $video->id) }}" class="btn btn-danger">Delete</a></td>
+              <a href="{{ route('video.confirm', $video->id) }}" class="btn btn-danger"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>
             @endpermission
         </tr>
     @endforeach

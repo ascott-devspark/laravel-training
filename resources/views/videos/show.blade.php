@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content-title')
-Preview Video User
+Preview Video
 @endsection
 
 @section('content-body')

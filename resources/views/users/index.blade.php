@@ -5,7 +5,7 @@ User List
 @endsection
 
 @section('content-btns')
- <a href="{{ route('user.create') }}" class="btn btn-success">Create</a>
+ <a href="{{ route('user.create') }}" class="btn btn-success"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
 @endsection
 
 @section('content-body')
@@ -25,8 +25,8 @@ User List
           <td>{{ $user->name }}</td>
           <td>{{ $user->email }}</td>
           <td>
-            <a href="{{ route('user.edit', $user->id) }}" class="btn btn-warning">Edit</a>
-            <a href="{{ route('user.confirm', $user->id) }}" class="btn btn-danger">Delete</a>
+            <a href="{{ route('user.edit', $user->id) }}" class="btn btn-warning"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
+            <a href="{{ route('user.confirm', $user->id) }}" class="btn btn-danger"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
           </td>
         </tr>
     @endforeach
